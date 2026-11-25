@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Confetti & Co. | Fun & Colourful Party Planning</title>
+  <link href="https://googleapis.com" rel="stylesheet">
+  <style>
+    :root {
+      --pink: #ff477e;
+      --yellow: #ffd166;
+      --teal: #06d6a0;
+      --blue: #118ab2;
+      --purple: #9b5de5;
+      --bg-light: #fff9fc;
+      --text-dark: #2b2d42;
+      --white: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Quicksand', sans-serif;
+      color: var(--text-dark);
+      background-color: var(--bg-light);
+      line-height: 1.6;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, .logo {
+      font-family: 'Fredoka', sans-serif;
+    }
+
+    /* Navigation */
+    header {
+      background: var(--white);
+      border-bottom: 4px dashed var(--yellow);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    nav {
+      max-width: 1100px;
+      margin: auto;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      background: linear-gradient(45deg, var(--pink), var(--purple), var(--blue));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-dark);
+      font-weight: 700;
+      padding: 0.4rem 0.8rem;
+      border-radius: 20px;
+      transition: all 0.2s;
+    }
+
+    .nav-links a:hover {
+      background: var(--yellow);
+      color: var(--text-dark);
+    }
+
+    /* Hero Section with CSS Confetti Pattern */
+    .hero {
+      background: linear-gradient(135deg, var(--pink) 0%, var(--purple) 50%, var(--blue) 100%);
+      color: var(--white);
+      text-align: center;
+      padding: 6rem 2rem;
+      position: relative;
+      border-bottom-left-radius: 50% 40px;
+      border-bottom-right-radius: 50% 40px;
+    }
+
+    .hero h1 {
+      font-size: 3.4rem;
+      margin-bottom: 1rem;
+      text-shadow: 2px 4px 0px rgba(0,0,0,0.15);
+    }
+
+    .hero p {
+      font-size: 1.3rem;
+      max-width: 620px;
+      margin: 0 auto 2rem;
+      font-weight: 500;
+    }
+
+    .btn {
+      display: inline-block;
+      background: var(--yellow);
+      color: var(--text-dark);
+      padding: 1rem 2.2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 6px 0 #e0a800;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 9px 0 #e0a800;
+    }
+
+    .btn:active {
+      transform: translateY(3px);
+      box-shadow: 0 3px 0 #e0a800;
+    }
+
+    /* General Sections */
+    section {
+      padding: 4.5rem 2rem;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2.5rem;
+      color: var(--purple);
+      margin-bottom: 0.4rem;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      font-size: 1.15rem;
+      margin-bottom: 3rem;
+    }
+
+    /* Colourful Services Grid */
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .card {
+      background: var(--white);
+      padding: 2.2rem;
+      border-radius: 24px;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-8px) rotate(1deg);
+    }
+
+    .card-pink {
+      border: 4px solid var(--pink);
+      box-shadow: 0 8px 0 var(--pink);
+    }
+
+    .card-teal {
+      border: 4px solid var(--teal);
+      box-shadow: 0 8px 0 var(--teal);
+    }
+
+    .card-purple {
+      border: 4px solid var(--purple);
+      box-shadow: 0 8px 0 var(--purple);
+    }
+
+    .card-icon {
+      font-size: 3rem;
+      margin-bottom: 0.8rem;
+      display: block;
+    }
+
+    .card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.8rem;
+    }
+
+    /* Gallery */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .gallery-grid img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 24px;
+      border: 5px solid var(--white);
+      box-shadow: 0 8px 20px rgba(155, 93, 229, 0.2);
+      transition: transform 0.3s;
+    }
+
+    .gallery-grid img:hover {
+      transform: scale(1.04) rotate(-1.5deg);
+    }
+
+    /* Testimonials */
+    .bg-fun {
+      background: var(--yellow);
+      max-width: 100%;
+      border-top: 4px dashed var(--pink);
+      border-bottom: 4px dashed var(--teal);
+    }
+
+    .testimonial-box {
+      max-width: 750px;
+      margin: auto;
+      background: var(--white);
+      padding: 2.5rem;
+      border-radius: 30px;
+      text-align: center;
+      font-size: 1.25rem;
+      box-shadow: 0 10px 0 var(--pink);
+    }
+
+    .testimonial-author {
+      margin-top: 1rem;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1.2rem;
+      color: var(--pink);
+    }
+
+    /* Contact Form */
+    .contact-form {
+      max-width: 600px;
+      margin: auto;
+      background: var(--white);
+      padding: 2.5rem;
+      border-radius: 30px;
+      border: 4px solid var(--teal);
+      box-shadow: 0 10px 0 var(--teal);
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+    }
+
+    .contact-form input,
+    .contact-form select,
+    .contact-form textarea {
+      width: 100%;
+      padding: 0.9rem 1.2rem;
+      border: 2px solid #e2e8f0;
+      border-radius: 15px;
+      font-family: 'Quicksand', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .contact-form input:focus,
+    .contact-form select:focus,
+    .contact-form textarea:focus {
+      outline: none;
+      border-color: var(--purple);
+    }
+
+    #form-status {
+      text-align: center;
+      color: var(--teal);
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1.2rem;
+      display: none;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--purple);
+      color: var(--white);
+      text-align: center;
+      padding: 2.5rem;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header>
+    <nav>
+      <a href="#" class="logo">🎉 Confetti & Co.</a>
+      <ul class="nav-links">
+        <li><a href="#services">Packages</a></li>
+        <li><a href="#gallery">Party Vibes</a></li>
+        <li><a href="#reviews">Happy Clients</a></li>
+        <li><a href="#contact">Let's Party!</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <div class="hero">
+    <h1>Big Colour. Zero Stress. Pure Party Magic! ✨</h1>
+    <p>From vibrant balloon garlands to unforgettable milestone bashes, we bring the sparkle while you enjoy the celebration.</p>
+    <a href="#contact" class="btn">Start Your Party Plan 🎈</a>
+  </div>
+
+  <!-- Services -->
+  <section id="services">
+    <h2 class="section-title">Pick Your Party Package</h2>
+    <p class="section-subtitle">Every celebration gets a custom splash of colour and creativity.</p>
+    <div class="grid-3">
+      <div class="card card-pink">
+        <span class="card-icon">🥳</span>
+        <h3 style="color: var(--pink);">The Full Fiesta</h3>
+        <p>We handle everything from venue hunting and custom themes to entertainment and cleanup.</p>
+      </div>
+      <div class="card card-teal">
+        <span class="card-icon">🎈</span>
+        <h3 style="color: var(--teal);">Pop of Colour Decor</h3>
+        <p>Show-stopping balloon arches, neon signs, colourful tablescapes, and photo backdrops.</p>
+      </div>
+      <div class="card card-purple">
+        <span class="card-icon">🪩</span>
+        <h3 style="color: var(--purple);">Party Day Hype Crew</h3>
+        <p>Already booked your vendors? We run the schedule on the day so you can dance all night.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio Gallery -->
+  <section id="gallery">
+    <h2 class="section-title">Past Party Vibes</h2>
+    <p class="section-subtitle">Bright themes, bold backdrops, and happy guests.</p>
+    <div class="gallery-grid">
+      <img src="https://unsplash.com" alt="Colourful balloons and confetti">
+      <img src="https://unsplash.com" alt="Bright festive party celebration">
+      <img src="https://unsplash.com" alt="Vibrant party decorations and lights">
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section id="reviews" class="bg-fun">
+    <h2 class="section-title" style="color: var(--text-dark);">Rave Reviews</h2>
+    <div class="testimonial-box">
+      <p>"Confetti & Co. brought the most incredible rainbow theme to life for my son's birthday. Guests are still talking about the balloon wall!"</p>
+      <div class="testimonial-author">⭐ Sarah M., Edinburgh</div>
+    </div>
+  </section>
+
+  <!-- Contact Form -->
+  <section id="contact">
+    <h2 class="section-title">Ready to Celebrate?</h2>
+    <p class="section-subtitle">Drop your party details below and let's start brainstorming!</p>
+    <form class="contact-form" id="inquiryForm">
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email Address" required>
+      <select required>
+        <option value="">What are we celebrating?</option>
+        <option value="birthday">🎂 Milestone Birthday</option>
+        <option value="kids">🦄 Kids' Theme Party</option>
